@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  IntercomClientOpenDoor
+
+  Created by my on 5/8/19.
+  Copyright © 2019 newlinks. All rights reserved.
+*/
+"open_door"="Open Door";
+"no_devices_press_to_find"="No Devices\nPress to find";
+"find"="Find";
+
+"scanning_for_devices"="scanning for devices";
+"select_device"="select a device to connect";
+"scan_for_devices"="Scan for devices";
+
+"enter_old_password" = "Enter Old Password";
+"enter_name"="Enter Name";
+"enter_new_password" = "Enter New Password";
+"confirm" = "Confirm";
+"cancel" = "Cancel";
+"enter_password" = "Enter Password";
+"confirm_password_incorrect" = "Please confirm password.";
+"invalid_old_password" = "Invalid old password.";
+"short_password" = "Password should be 6 digits.";
+"delete"="Delete";
+"change_password"="Change Password";
+"whoops"="Whoops";
+"password_invalid" = "Invalid Password.";
+
