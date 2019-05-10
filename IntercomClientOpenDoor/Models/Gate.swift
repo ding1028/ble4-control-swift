@@ -33,6 +33,9 @@ class Gate: NSObject, NSCoding {
     var peripheral:CBPeripheral? = nil;
     var characteristic:CBCharacteristic? = nil
     
+    var isDoorOneOpening:Bool = false;
+    var isDoorTwoOpening: Bool = false;
+    
     func write(command: String) {
         let data = hexStringToData(command);
         print("encoded command", data);

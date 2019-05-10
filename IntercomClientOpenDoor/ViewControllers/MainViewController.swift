@@ -455,17 +455,23 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     func openDoorFirst(gate: Gate) {
+        if(gate.isDoorOneOpening) {
+            return;
+        }
         mainGate = gate;
         if(!gate.isAvailableGate()) {
             return;
         }
         if(gate.isVerify) {
+            
             gate.sendCheckPassword(password: gate.password ?? "123456");
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                gate.isDoorOneOpening= true;
                 self.playDoorOpenSound();
                 gate.writeCommand(commandType: self.CMD_OPEN_DOOR)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                    gate.isDoorOneOpening = false;
                     gate.writeCommand(commandType: self.CMD_CLOSE_DOOR);
                     self.playDoorCloseSound();
                 })
@@ -483,6 +489,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     func openDoorSecond(gate: Gate) {
+        if(gate.isDoorTwoOpening) {
+            return;
+        }
+   
         mainGate = gate;
         if(!gate.isAvailableGate()) {
             return;
@@ -491,8 +501,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             gate.sendCheckPassword(password: gate.password ?? "123456");
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.playDoorOpenSound();
+                gate.isDoorTwoOpening = true;
                 gate.writeCommand(commandType: self.CMD_OPEN_DOOR_2)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                     gate.isDoorTwoOpening = false;
                     gate.writeCommand(commandType: self.CMD_CLOSE_DOOR_2);
                     self.playDoorCloseSound();
                 })
