@@ -466,7 +466,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
             gate.sendCheckPassword(password: gate.password ?? "123456");
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                gate.isDoorOneOpening= true;
+                gate.isDoorOneOpening = true;
                 self.playDoorOpenSound();
                 gate.writeCommand(commandType: self.CMD_OPEN_DOOR)
                 
