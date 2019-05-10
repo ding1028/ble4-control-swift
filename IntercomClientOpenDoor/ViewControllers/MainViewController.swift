@@ -465,10 +465,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             return;
         }
         if(gate.isVerify) {
-            
+            gate.isDoorOneOpening = true;
             gate.sendCheckPassword(password: gate.password ?? "123456");
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                gate.isDoorOneOpening = true;
+           
                 self.playDoorOpenSound();
                 gate.writeCommand(commandType: self.CMD_OPEN_DOOR)
                 
@@ -500,10 +500,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             return;
         }
         if(gate.isVerify) {
+            gate.isDoorTwoOpening = true;
             gate.sendCheckPassword(password: gate.password ?? "123456");
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.playDoorOpenSound();
-                gate.isDoorTwoOpening = true;
+           
                 gate.writeCommand(commandType: self.CMD_OPEN_DOOR_2)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
                      gate.isDoorTwoOpening = false;
