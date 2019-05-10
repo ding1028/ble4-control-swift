@@ -217,8 +217,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 } else if (gate.cmdType == CMD_CHANGE_PWD) {
                     if("01" == responseStr) {
                         print("Password changed.")
+                        gate.isVerify = true;
                     } else  {
                         print("Password change faild.")
+                        gate.isVerify = false;
                     }
                 }
                 
