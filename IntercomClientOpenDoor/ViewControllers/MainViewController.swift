@@ -460,14 +460,18 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             return;
         }
         if(gate.isVerify) {
-            playDoorOpenSound();
-            gate.writeCommand(commandType: CMD_OPEN_DOOR)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-                gate.writeCommand(commandType: self.CMD_CLOSE_DOOR);
-                self.playDoorCloseSound();
+            gate.sendCheckPassword(password: gate.password ?? "123456");
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.playDoorOpenSound();
+                gate.writeCommand(commandType: self.CMD_OPEN_DOOR)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                    gate.writeCommand(commandType: self.CMD_CLOSE_DOOR);
+                    self.playDoorCloseSound();
+                })
+                return;
             })
-            return;
+
         } else {
             //gate.writeCommand(commandType: CMD_BOARD_TYPE)
             showEnterPasswordDlg(gate: gate);
@@ -484,13 +488,17 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             return;
         }
         if(gate.isVerify) {
-            playDoorOpenSound();
-            gate.writeCommand(commandType: CMD_OPEN_DOOR_2)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-                gate.writeCommand(commandType: self.CMD_CLOSE_DOOR_2);
-                self.playDoorCloseSound();
+            gate.sendCheckPassword(password: gate.password ?? "123456");
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.playDoorOpenSound();
+                gate.writeCommand(commandType: self.CMD_OPEN_DOOR_2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                    gate.writeCommand(commandType: self.CMD_CLOSE_DOOR_2);
+                    self.playDoorCloseSound();
+                })
+                return;
             })
-            return;
+           
         } else {
             //gate.writeCommand(commandType: CMD_BOARD_TYPE)
             showEnterPasswordDlg(gate: gate);
