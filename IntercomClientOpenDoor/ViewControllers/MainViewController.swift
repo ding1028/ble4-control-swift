@@ -307,8 +307,45 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         print("Disconnected" + peripheral.name!)
     }
     
+    func showAlertToOpenSettings() {
+        let alert = UIAlertController(title: "bluetooth_is_off".localized(), message: "please_turn_bluetooth".localized(), preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "cancel".localized(), style:  .cancel, handler: nil));
+        alert.addAction(UIAlertAction(title: "go_to_settings".localized(), style: .default, handler: { (action) in
+            switch action.style {
+            case .default:
+                let url = URL(string: "App-Prefs:root=General") //for bluetooth setting
+                let app = UIApplication.shared
+                app.open(url!, options: [:], completionHandler: nil)
+                print("default")
+            case .cancel:
+                print("cancel")
+            case .destructive:
+                print("destrucive")
+            }
+        } ))
+        self.present(alert, animated: true)
+    }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .poweredOn:
+            break
+        case .poweredOff:
+          
+            print("Bluetooth is Off.")
+            self.showAlertToOpenSettings();
+            break
+        case .resetting:
+            break
+        case .unauthorized:
+            break
+        case .unsupported:
+            break
+        case .unknown:
+            break
+        default:
+            break
+        }
         print(central.state)
     }
     

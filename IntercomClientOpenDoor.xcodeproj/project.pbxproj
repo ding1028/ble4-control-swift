@@ -84,6 +84,7 @@
 		0F43279722849A04007C7B65 /* ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ring.mp3; sourceTree = "<group>"; };
 		0F70A3FF2282C2960045F897 /* Gate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		0F70A4022282CFF70045F897 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
+		0FCD537E22871D7E00D1B416 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6E8B5E7D4C419809BFFBD282 /* Pods-IntercomClientOpenDoor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntercomClientOpenDoor.release.xcconfig"; path = "Target Support Files/Pods-IntercomClientOpenDoor/Pods-IntercomClientOpenDoor.release.xcconfig"; sourceTree = "<group>"; };
 		BA103717D64AA7F37A327855 /* Pods_IntercomClientOpenDoor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntercomClientOpenDoor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBFD5D700F02BE1383591980 /* Pods-IntercomClientOpenDoor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntercomClientOpenDoor.debug.xcconfig"; path = "Target Support Files/Pods-IntercomClientOpenDoor/Pods-IntercomClientOpenDoor.debug.xcconfig"; sourceTree = "<group>"; };
@@ -336,6 +337,7 @@
 			knownRegions = (
 				en,
 				Base,
+				he,
 			);
 			mainGroup = 0F2AE7532281F17600EBD4D7;
 			productRefGroup = 0F2AE75D2281F17700EBD4D7 /* Products */;
@@ -505,6 +507,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0F2AE791228204C300EBD4D7 /* en */,
+				0FCD537E22871D7E00D1B416 /* he */,
 			);
 			name = Localizable.strings;
 			path = translate;
