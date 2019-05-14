@@ -60,10 +60,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             self.refreshLoadedGates();
             self.removeSpinner()
         })
-        
-
-    
-    
     }
 
     
@@ -78,6 +74,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
          self.msgDoorOpen.isHidden = true;
         
     }
+    
+
     
     func updateUI() {
         if(gateArrayList.count > 0) {

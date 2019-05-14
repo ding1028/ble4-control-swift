@@ -152,23 +152,23 @@ class Gate: NSObject, NSCoding {
     
     required convenience init(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "name") as! String
-        let identifier = aDecoder.decodeObject(forKey: "identifier") as! UUID
+        print("Name", name);
+        guard let identifier = aDecoder.decodeObject(forKey: "identifier") as? UUID else {
+            self.init();
+            return;
+        };
         let password = aDecoder.decodeObject(forKey: "password") as? String
-        let isPasswordMode = aDecoder.decodeObject(forKey: "ispasswordmode") as? Bool
-        let isVerify = aDecoder.decodeObject(forKey: "isverify") as? Bool
-        self.init(gateName: name, gateIdentifier: identifier, gatePassword: password, gateIsPasswordMode: isPasswordMode ?? true, gateIsVerify: isVerify ?? false);
+        let isPasswordMode = aDecoder.decodeBool(forKey: "ispasswordmode");
+        let isVerify = aDecoder.decodeBool(forKey: "isverify");
+        self.init(gateName: name, gateIdentifier: identifier, gatePassword: password, gateIsPasswordMode: isPasswordMode, gateIsVerify: isVerify);
     }
     
     func encode(with aCoder: NSCoder){
-        
         aCoder.encode(name, forKey: "name")
         aCoder.encode(identifier, forKey: "identifier")
-
+        aCoder.encode(password, forKey: "password")
         aCoder.encode(isPasswordMode, forKey: "ispasswordmode")
         aCoder.encode(isVerify, forKey: "isverify")
-        if let p = password {
-            aCoder.encode(p, forKey: "password")
-        }
     }
     
     
