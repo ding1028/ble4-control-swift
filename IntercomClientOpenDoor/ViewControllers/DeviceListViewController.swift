@@ -33,6 +33,8 @@ class DeviceListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         configureUI();
         scanPeripherals();
+        
+
     }
     
     //configure ui for translation and custom ui changes
@@ -143,4 +145,6 @@ class DeviceListViewController: UIViewController, UITableViewDelegate, UITableVi
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print(error!)
     }
+    
+
 }

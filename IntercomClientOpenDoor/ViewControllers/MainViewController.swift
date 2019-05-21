@@ -52,6 +52,9 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         // Do any additional setup after loading the view.
         configureUI()
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
         manager = CBCentralManager(delegate: self, queue: nil);
         self.loadGates();
         self.showSpinner(onView: self.view)
@@ -60,6 +63,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             self.refreshLoadedGates();
             self.removeSpinner()
         })
+        
+
     }
 
     
@@ -171,8 +176,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             for(_, peripheral) in peripherals.enumerated() {
                 if let gate: Gate = getGateById(identifier: peripheral.identifier) {
                     gate.peripheral = peripheral;
-                    print("retrived peripheral connect:", peripheral.name ?? "UnNamed");
-                    manager?.connect(peripheral, options: nil);
+                    //print("retrived peripheral connect:", peripheral.name ?? "UnNamed");
+                    //manager?.connect(peripheral, options: nil);
                 }
             }
         }
@@ -592,6 +597,16 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         print("close door sound");
         RingPlayer.shared.playDoorClose();
         self.msgDoorOpen.isHidden = true;
+    }
+    
+    @objc func appMovedToBackground() {
+        print("App move to background. cancel all connections");
+        for(index, item) in gateArrayList.enumerated() {
+            if let peripheral = item.peripheral {
+                manager?.cancelPeripheralConnection(peripheral);
+            }
+      
+        }
     }
     
 }
