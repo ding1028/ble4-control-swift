@@ -12,7 +12,7 @@
 "scanning_for_devices"="מחפש התקנים";
 "select_device"="בחר התקן לחיבור";
 "scan_for_devices"="סרוק התקנים";
-
+"guest_name"="שם אורח";
 "enter_old_password" = "הכנס סיסמא ישנה";
 "enter_name"="הכנס שם";
 "enter_new_password" = "הכנס סיסמא חדשה";

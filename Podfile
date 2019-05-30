@@ -4,5 +4,6 @@ target 'IntercomClientOpenDoor' do
   use_frameworks!
   pod 'Localize-Swift', '~> 2.0'
   pod 'SwiftyBluetooth'
+  pod 'Toast-Swift', '~> 5.0.0'
 
 end

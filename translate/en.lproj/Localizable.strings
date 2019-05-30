@@ -12,6 +12,7 @@
 "scanning_for_devices"="scanning for devices";
 "select_device"="select a device to connect";
 "scan_for_devices"="Scan for devices";
+"guest_name"="Guest Name";
 
 "enter_old_password" = "Enter Old Password";
 "enter_name"="Enter Name";

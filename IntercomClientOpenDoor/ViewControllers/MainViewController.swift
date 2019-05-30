@@ -434,10 +434,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         cell.addGestureRecognizer(longPressGest)
         
         cell.actionOpenDoorFirst = {
-            self.openDoorFirst(gate: gate);
+            self.openDoorSecond(gate: gate);
         }
         cell.actionOpenDoorSecond = {
-            self.openDoorSecond(gate: gate);
+            self.openDoorFirst(gate: gate);
         }
         cell.actionReconnect = {
             self.reconnectGate(gate: gate);
