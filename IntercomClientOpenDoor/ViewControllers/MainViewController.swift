@@ -528,7 +528,27 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         updateUI();
     }
     
-    
+    func disconnectGate(gate: Gate) {
+        mainGate = gate;
+        if(!gate.isAvailableGate()) {
+            return;
+        }
+        if(gate.isVerify) {
+            if(gate.isDoorOneOpening){
+                gate.isDoorOneOpening = false;
+                gate.writeCommand(commandType: self.CMD_CLOSE_DOOR);
+            }
+            if(gate.isDoorTwoOpening) {
+                gate.isDoorTwoOpening = false;
+                gate.writeCommand(commandType: self.CMD_CLOSE_DOOR_2);
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            if let peripheral = gate.peripheral {
+                self.manager?.cancelPeripheralConnection(peripheral);
+            }
+        })
+    }
     
     func openDoorSecond(gate: Gate) {
         if(gate.isDoorTwoOpening) {
@@ -602,9 +622,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @objc func appMovedToBackground() {
         print("App move to background. cancel all connections");
         for(index, item) in gateArrayList.enumerated() {
-            if let peripheral = item.peripheral {
-                manager?.cancelPeripheralConnection(peripheral);
-            }
+            
+            disconnectGate(gate: item)
       
         }
     }
