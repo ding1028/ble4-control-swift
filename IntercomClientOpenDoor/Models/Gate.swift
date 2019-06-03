@@ -160,6 +160,7 @@ class Gate: NSObject, NSCoding {
         let password = aDecoder.decodeObject(forKey: "password") as? String
         let isPasswordMode = aDecoder.decodeBool(forKey: "ispasswordmode");
         let isVerify = aDecoder.decodeBool(forKey: "isverify");
+
         self.init(gateName: name, gateIdentifier: identifier, gatePassword: password, gateIsPasswordMode: isPasswordMode, gateIsVerify: isVerify);
     }
     

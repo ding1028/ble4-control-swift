@@ -13,6 +13,18 @@ class LocalData: NSObject {
     private override init() {
     }
     
+    func getDefautGate() -> UUID? {
+        return UserDefaults.standard.object(forKey: "defaultGate") as? UUID;
+    }
+    func setDefaultGate(identifier: UUID?) {
+        if let identifier = identifier {
+            UserDefaults.standard.set(identifier, forKey: "defaultGate")
+        }
+    }
+    func cancelDefaultGate(){
+        UserDefaults.standard.removeObject(forKey: "defaultGate")
+    }
+    
     func getBluetoothObjects() -> [Gate] {
         let gatesData = UserDefaults.standard.object(forKey: "gateArrayList") as? NSData
         

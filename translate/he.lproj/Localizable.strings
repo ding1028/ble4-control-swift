@@ -30,3 +30,5 @@
 "go_to_settings" = "עבור להגדרות";
 "please_turn_bluetooth" = "bluetooth אנא הדלק";
 "enter_confirm_passowrd" = "הכנס הסיסמא שנית";
+"cancel_default" = "בטל ברירת מחדל";
+"make_default" = "סמן כברירת מחדל";

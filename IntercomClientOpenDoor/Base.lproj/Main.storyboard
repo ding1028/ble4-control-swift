@@ -730,7 +730,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-PY-jeh">
-                                <rect key="frame" x="32" y="338" width="350" height="230"/>
+                                <rect key="frame" x="32" y="318" width="350" height="270"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZy-9g-vqY">
                                         <rect key="frame" x="127.5" y="24" width="95.5" height="21"/>
@@ -794,26 +794,40 @@
                                             <action selector="changePassword:" destination="4Gr-l3-hKi" eventType="touchUpInside" id="umq-Sq-fuf"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFf-rE-Ev8">
+                                        <rect key="frame" x="16" y="226" width="318" height="28"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="Change Password">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="makeDefault:" destination="4Gr-l3-hKi" eventType="touchUpInside" id="Tp2-VT-YSl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="cob-LG-1HY" firstAttribute="centerX" secondItem="bXF-PY-jeh" secondAttribute="centerX" id="JDq-mB-oXa"/>
                                     <constraint firstItem="gfA-dP-yZk" firstAttribute="top" secondItem="cob-LG-1HY" secondAttribute="bottom" constant="16" id="L2M-l3-9jT"/>
+                                    <constraint firstAttribute="trailing" secondItem="cFf-rE-Ev8" secondAttribute="trailing" constant="16" id="USy-VM-xe4"/>
                                     <constraint firstItem="hZy-9g-vqY" firstAttribute="centerX" secondItem="bXF-PY-jeh" secondAttribute="centerX" id="VIK-IE-6o8"/>
                                     <constraint firstItem="gfA-dP-yZk" firstAttribute="leading" secondItem="bXF-PY-jeh" secondAttribute="leading" constant="16" id="Wg3-FG-gC8"/>
                                     <constraint firstItem="hZy-9g-vqY" firstAttribute="top" secondItem="bXF-PY-jeh" secondAttribute="top" constant="24" id="WkQ-Bw-uFo"/>
                                     <constraint firstAttribute="trailing" secondItem="10l-cC-3ST" secondAttribute="trailing" constant="16" id="arq-W7-M5T"/>
+                                    <constraint firstItem="cFf-rE-Ev8" firstAttribute="top" secondItem="gfA-dP-yZk" secondAttribute="bottom" constant="8" id="bzx-Wx-aT9"/>
                                     <constraint firstItem="10l-cC-3ST" firstAttribute="top" secondItem="7Ij-eu-bmR" secondAttribute="bottom" constant="15" id="c7D-rF-gha"/>
                                     <constraint firstItem="7Ij-eu-bmR" firstAttribute="top" secondItem="hZy-9g-vqY" secondAttribute="bottom" constant="16" id="eMU-h2-fzZ"/>
                                     <constraint firstAttribute="trailing" secondItem="cob-LG-1HY" secondAttribute="trailing" constant="16" id="hUh-Nj-ydt"/>
                                     <constraint firstItem="tTl-FB-78z" firstAttribute="leading" secondItem="bXF-PY-jeh" secondAttribute="leading" constant="16" id="j6r-Rz-RTa"/>
                                     <constraint firstItem="cob-LG-1HY" firstAttribute="top" secondItem="7Ij-eu-bmR" secondAttribute="bottom" constant="55" id="kjC-6o-pJi"/>
                                     <constraint firstItem="cob-LG-1HY" firstAttribute="leading" secondItem="bXF-PY-jeh" secondAttribute="leading" constant="16" id="lBc-9Y-Yzq"/>
+                                    <constraint firstItem="cFf-rE-Ev8" firstAttribute="leading" secondItem="bXF-PY-jeh" secondAttribute="leading" constant="16" id="oy8-bC-pip"/>
                                     <constraint firstItem="tTl-FB-78z" firstAttribute="top" secondItem="7Ij-eu-bmR" secondAttribute="bottom" constant="15" id="pmw-kn-zZH"/>
                                     <constraint firstAttribute="trailing" secondItem="gfA-dP-yZk" secondAttribute="trailing" constant="16" id="r4c-J7-8Gn"/>
                                     <constraint firstItem="7Ij-eu-bmR" firstAttribute="leading" secondItem="bXF-PY-jeh" secondAttribute="leading" constant="16" id="vWN-1u-dqm"/>
                                     <constraint firstAttribute="trailing" secondItem="7Ij-eu-bmR" secondAttribute="trailing" constant="16" id="yui-kM-zHl"/>
-                                    <constraint firstAttribute="height" constant="230" id="zUj-C6-nF0"/>
+                                    <constraint firstAttribute="height" constant="270" id="zUj-C6-nF0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -834,6 +848,7 @@
                         <outlet property="btnCancel" destination="10l-cC-3ST" id="0kD-1l-GZg"/>
                         <outlet property="btnChangePass" destination="gfA-dP-yZk" id="VR1-gK-ZDN"/>
                         <outlet property="btnConfirm" destination="tTl-FB-78z" id="vmZ-f5-0Ph"/>
+                        <outlet property="btnDefault" destination="cFf-rE-Ev8" id="X5r-sP-tHD"/>
                         <outlet property="btnDelete" destination="cob-LG-1HY" id="Svl-Ke-nXR"/>
                         <outlet property="lblTitle" destination="hZy-9g-vqY" id="FA7-r5-7vU"/>
                         <outlet property="txtName" destination="7Ij-eu-bmR" id="fbI-4s-7B4"/>

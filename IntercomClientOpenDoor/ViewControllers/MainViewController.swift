@@ -246,6 +246,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             self.addGate(peripheral: peripheral, characteristic: characteristic,  name: name);
             
         }
+        
+        
         nameDlgController.completionHandler = completionHandler;
         self.present(nameDlgController, animated: true, completion: nil)
         
@@ -305,8 +307,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             gate.isAvailable = false;
             updateUI();
         }
-        
-        
         print("Disconnected" + peripheral.name!)
     }
     
@@ -316,7 +316,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         alert.addAction(UIAlertAction(title: "go_to_settings".localized(), style: .default, handler: { (action) in
             switch action.style {
             case .default:
-                let url = URL(string: "App-Prefs:root=General") //for bluetooth setting
+                let url = URL(string: UIApplication.openSettingsURLString)
                 let app = UIApplication.shared
                 app.open(url!, options: [:], completionHandler: nil)
                 print("default")
@@ -434,10 +434,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         cell.addGestureRecognizer(longPressGest)
         
         cell.actionOpenDoorFirst = {
-            self.openDoorSecond(gate: gate);
+            self.openDoorFirst(gate: gate);
         }
         cell.actionOpenDoorSecond = {
-            self.openDoorFirst(gate: gate);
+        
+            self.openDoorSecond(gate: gate);
         }
         cell.actionReconnect = {
             self.reconnectGate(gate: gate);
@@ -474,7 +475,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 let menuDlgController: MenuDlgViewController = storyboard.instantiateViewController(withIdentifier: "MenuDlgViewController") as! MenuDlgViewController;
                 menuDlgController.modalPresentationStyle = .overCurrentContext;
                 menuDlgController.defaultName = defaultName;
-                
+                if let defaultGateIdentifier = LocalData.shared.getDefautGate() {
+                    menuDlgController.isDefault = defaultGateIdentifier == gate.identifier;
+                }
+              
                 let completionHandler:(_ name: String, _ action:String)->Void = { (name, action) in
                     gate.name = name;
                     if(action == "delete") {
@@ -489,7 +493,16 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     }
                     self.updateUI();
                 }
-                menuDlgController.completionHandler = completionHandler;
+                
+                let defaultChangeHandler: (_ isDefault:Bool) -> Void = { (isDefault) in
+                    if(isDefault){
+                        LocalData.shared.setDefaultGate(identifier: gate.identifier)
+                    } else {
+                        LocalData.shared.cancelDefaultGate();
+                    }
+                }
+                 menuDlgController.completionHandler = completionHandler;
+                menuDlgController.defaultChangeHandler = defaultChangeHandler;
                 self.present(menuDlgController, animated: true, completion: nil)
                 
             }
@@ -625,6 +638,26 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
             disconnectGate(gate: item)
       
+        }
+    }
+    
+    //#Mark landscape change
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            print("Changed to landscape")
+            
+            if let defaultGateID = LocalData.shared.getDefautGate() {
+                print("Default Gate ID", defaultGateID);
+                for(_, item) in gateArrayList.enumerated() {
+                    if(item.identifier == defaultGateID) {
+                        print("Open default gate:", item.name);
+                        self.openDoorFirst(gate: item);
+                    }
+                }
+            }
+
+        } else {
         }
     }
     

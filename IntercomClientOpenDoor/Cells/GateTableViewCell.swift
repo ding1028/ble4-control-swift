@@ -30,13 +30,13 @@ class GateTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func doorOpenAction(_ sender: Any) {
-        if let doorOpen = actionOpenDoorFirst {
+        if let doorOpen = actionOpenDoorSecond {
             doorOpen();
         }
-
     }
     @IBAction func doorOpen2Action(_ sender: Any) {
-        if let doorOpen = actionOpenDoorSecond {
+
+        if let doorOpen = actionOpenDoorFirst {
             doorOpen();
         }
     }
